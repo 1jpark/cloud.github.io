@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404 — Not Found · Meson Cloud Portal</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,500;0,9..40,700;1,9..40,300&family=DM+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --c1:#1a73e8;--c2:#ea4335;--c3:#fbbc04;--c4:#34a853;
+  --c5:#fa7b17;--c6:#9c27b0;--c7:#00bcd4;--c8:#e91e63;
+  --ink:#1c1f26;--ink2:#3d4350;--ink3:#6b7280;
+  --surf:#ffffff;--surf2:#f4f6fb;--surf3:#eef1f8;
+  --border:#e2e6f0;
+  --radius:18px;--radius-sm:12px;
+  --font:'DM Sans',sans-serif;
+  --mono:'DM Mono',monospace;
+  --serif:'Playfair Display',serif;
+  --err:#fa7b17;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);background:var(--surf2);color:var(--ink);min-height:100vh;overflow-x:hidden;display:flex;flex-direction:column}
+
+.bg-pattern{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.bg-pattern svg{width:100%;height:100%;opacity:.55}
+.bp-circle{animation:bpFloat 18s ease-in-out infinite alternate}
+.bp-circle:nth-child(2){animation-duration:24s;animation-delay:-6s}
+.bp-circle:nth-child(3){animation-duration:20s;animation-delay:-12s}
+.bp-circle:nth-child(4){animation-duration:15s;animation-delay:-3s}
+@keyframes bpFloat{0%{transform:translate(0,0) scale(1)}100%{transform:translate(40px,25px) scale(1.06)}}
+
+/* Clock Bar */
+.clock-bar{
+  position:relative;z-index:1;
+  display:flex;align-items:stretch;
+  background:var(--ink);border-radius:0 0 20px 20px;
+  margin:0;overflow:hidden;
+  box-shadow:0 4px 24px rgba(28,31,38,.22);
+  animation:slideDown .6s cubic-bezier(.16,1,.3,1) both;
+}
+@keyframes slideDown{from{opacity:0;transform:translateY(-24px)}to{opacity:1;transform:translateY(0)}}
+.clock-zone{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:14px 10px;gap:2px;position:relative;border-right:1px solid rgba(255,255,255,.08);transition:background .2s;}
+.clock-zone:last-child{border-right:none}
+.clock-zone:hover{background:rgba(255,255,255,.06)}
+.cz-label{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.45);font-weight:500}
+.cz-time{font-family:var(--mono);font-size:20px;color:#fff;font-weight:500;letter-spacing:.04em;line-height:1}
+.cz-date{font-size:10px;color:rgba(255,255,255,.40);margin-top:1px}
+.cz-dot{width:6px;height:6px;border-radius:50%;position:absolute;top:10px;right:10px;animation:pulse 2s ease infinite}
+.cz-local .cz-dot{background:var(--c4);box-shadow:0 0 8px var(--c4)}
+.cz-utc   .cz-dot{background:var(--c7);box-shadow:0 0 8px var(--c7)}
+.cz-sgt   .cz-dot{background:var(--c3);box-shadow:0 0 8px var(--c3)}
+.cz-bos   .cz-dot{background:var(--c8);box-shadow:0 0 8px var(--c8)}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+
+.page{
+  position:relative;z-index:1;
+  flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:60px 24px 80px;
+  animation:fadeUp .7s cubic-bezier(.16,1,.3,1) .1s both;
+}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+
+.err-card{
+  background:var(--surf);border:1.5px solid var(--border);
+  border-radius:var(--radius);
+  box-shadow:0 8px 40px color-mix(in srgb,var(--err) 10%,transparent);
+  max-width:520px;width:100%;
+  overflow:hidden;text-align:center;
+}
+
+.err-band{
+  background:linear-gradient(135deg,
+    color-mix(in srgb,var(--err) 12%,white),
+    color-mix(in srgb,var(--err) 5%,white));
+  border-bottom:1.5px solid color-mix(in srgb,var(--err) 16%,transparent);
+  padding:44px 40px 36px;
+  position:relative;overflow:hidden;
+}
+.err-band::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 50% 0%,color-mix(in srgb,var(--err) 18%,transparent) 0%,transparent 70%);
+}
+
+/* Floating number */
+.err-number{
+  font-family:var(--mono);font-size:96px;font-weight:500;line-height:1;
+  color:color-mix(in srgb,var(--err) 14%,transparent);
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  white-space:nowrap;pointer-events:none;letter-spacing:-.04em;
+  user-select:none;
+}
+
+.err-icon-wrap{
+  position:relative;display:inline-flex;align-items:center;justify-content:center;
+  width:88px;height:88px;margin:0 auto 20px;
+}
+.err-icon-ring{
+  position:absolute;inset:0;border-radius:50%;
+  border:2px solid color-mix(in srgb,var(--err) 30%,transparent);
+  animation:ringPulse 2.8s ease infinite;
+}
+.err-icon-ring:nth-child(2){animation-delay:.7s;inset:-8px}
+.err-icon-ring:nth-child(3){animation-delay:1.4s;inset:-16px}
+@keyframes ringPulse{
+  0%{opacity:.7;transform:scale(1)}
+  100%{opacity:0;transform:scale(1.25)}
+}
+.err-icon-circle{
+  width:72px;height:72px;border-radius:50%;
+  background:linear-gradient(135deg,var(--err),color-mix(in srgb,var(--err) 70%,#3a1500));
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 8px 28px color-mix(in srgb,var(--err) 40%,transparent);
+  position:relative;z-index:1;
+  animation:iconFloat 3.5s ease-in-out infinite;
+}
+@keyframes iconFloat{
+  0%,100%{transform:translateY(0) rotate(0deg)}
+  30%{transform:translateY(-6px) rotate(-4deg)}
+  70%{transform:translateY(-3px) rotate(3deg)}
+}
+.err-icon-circle .material-icons-round{color:#fff;font-size:34px}
+
+.err-code{
+  font-family:var(--mono);font-size:13px;font-weight:500;
+  color:var(--err);letter-spacing:.18em;text-transform:uppercase;
+  background:color-mix(in srgb,var(--err) 10%,white);
+  border:1px solid color-mix(in srgb,var(--err) 20%,transparent);
+  display:inline-block;padding:4px 14px;border-radius:20px;
+  margin-bottom:14px;position:relative;z-index:1;
+}
+.err-title{
+  font-family:var(--serif);font-size:30px;font-weight:700;
+  color:var(--ink);line-height:1.1;
+  position:relative;z-index:1;margin-bottom:6px;
+}
+.err-subtitle{font-size:13px;color:var(--ink3);position:relative;z-index:1;}
+
+.err-body{padding:28px 36px 32px}
+
+/* Animated path display */
+.err-path-box{
+  display:flex;align-items:center;gap:10px;
+  background:var(--ink);border-radius:10px;
+  padding:12px 16px;margin-bottom:20px;
+  overflow:hidden;
+}
+.err-path-box .material-icons-round{color:var(--err);font-size:16px;flex-shrink:0}
+.err-path-text{
+  font-family:var(--mono);font-size:12px;color:rgba(255,255,255,.6);
+  flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:left;
+}
+.err-path-text em{color:#fff;font-style:normal}
+
+.err-message{
+  font-size:14px;color:var(--ink2);line-height:1.65;
+  background:var(--surf2);border:1px solid var(--border);
+  border-radius:var(--radius-sm);padding:16px 18px;
+  margin-bottom:24px;text-align:left;
+}
+.err-message strong{color:var(--ink);font-weight:600}
+
+.err-info{display:flex;flex-direction:column;gap:8px;margin-bottom:28px;text-align:left}
+.err-info-row{
+  display:flex;align-items:center;gap:10px;
+  font-size:12.5px;color:var(--ink3);
+  padding:9px 14px;border-radius:10px;
+  background:var(--surf3);border:1px solid var(--border);
+}
+.err-info-row .material-icons-round{font-size:16px;color:var(--err);flex-shrink:0}
+
+.err-actions{display:flex;gap:10px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:7px;padding:11px 20px;border-radius:40px;font-size:13px;font-weight:600;text-decoration:none;border:none;cursor:pointer;transition:all .2s;font-family:var(--font);}
+.btn .material-icons-round{font-size:16px}
+.btn-primary{background:var(--err);color:#fff;box-shadow:0 3px 12px color-mix(in srgb,var(--err) 35%,transparent);flex:1;justify-content:center;}
+.btn-primary:hover{filter:brightness(1.08);box-shadow:0 5px 18px color-mix(in srgb,var(--err) 45%,transparent);transform:translateY(-1px)}
+.btn-outline{background:#fff;color:var(--ink2);border:1.5px solid var(--border);flex:1;justify-content:center;}
+.btn-outline:hover{border-color:var(--err);color:var(--err);transform:translateY(-1px)}
+
+.portal-footer{
+  position:relative;z-index:1;
+  margin:40px 24px 24px;padding:18px 28px;
+  background:var(--ink);border-radius:var(--radius);
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:16px;
+  animation:fadeUp .5s cubic-bezier(.16,1,.3,1) .4s both;
+}
+.pf-brand{display:flex;align-items:center;gap:12px}
+.pf-logo{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--c1),#0d47a1);display:flex;align-items:center;justify-content:center}
+.pf-logo .material-icons-round{color:#fff;font-size:20px}
+.pf-name{font-size:14px;font-weight:700;color:#fff}
+.pf-tagline{font-size:11px;color:rgba(255,255,255,.45);margin-top:1px}
+.pf-links{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.pf-link{font-size:12px;color:rgba(255,255,255,.55);text-decoration:none;display:flex;align-items:center;gap:5px;transition:color .18s}
+.pf-link:hover{color:#fff}
+.pf-link .material-icons-round{font-size:14px}
+.pf-divider{width:1px;height:14px;background:rgba(255,255,255,.15)}
+
+@media(max-width:600px){
+  .clock-bar{flex-wrap:wrap}
+  .clock-zone{min-width:50%;border-bottom:1px solid rgba(255,255,255,.08)}
+  .err-band{padding:32px 24px 28px}
+  .err-number{font-size:64px}
+  .err-body{padding:20px 20px 24px}
+  .err-actions{flex-direction:column}
+  .portal-footer{margin:24px 14px 14px}
+}
+
+/* Countdown */
+.countdown-bar-wrap{
+  margin-top:20px;
+}
+.countdown-label{
+  display:flex;align-items:center;justify-content:space-between;
+  font-size:11.5px;color:var(--ink3);margin-bottom:7px;
+}
+.countdown-label span{display:flex;align-items:center;gap:5px}
+.countdown-label .material-icons-round{font-size:14px}
+.countdown-num{
+  font-family:var(--mono);font-size:13px;font-weight:600;
+  color:var(--err);min-width:22px;text-align:right;
+}
+.countdown-track{
+  height:4px;border-radius:4px;background:var(--border);overflow:hidden;
+}
+.countdown-fill{
+  height:100%;border-radius:4px;
+  background:linear-gradient(90deg,var(--err),color-mix(in srgb,var(--err) 60%,#fff));
+  width:100%;
+  transition:width 1s linear;
+}
+</style>
+
+    <!--Meta Keywords and Description-->
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <meta name="theme-color" content="#C8AC61">
+
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="https://cdn.meson.one/f/cloud.meson.in/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://cdn.meson.one/f/cloud.meson.in/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://cdn.meson.one/f/cloud.meson.in/favicon-16x16.png">
+    <link rel="manifest" href="https://cdn.meson.one/f/cloud.meson.in/site.webmanifest">
+    <link rel="mask-icon" href="https://cdn.meson.one/f/cloud.meson.in/safari-pinned-tab.svg" color="#c8ac61">
+    <link rel="shortcut icon" href="https://cdn.meson.one/f/cloud.meson.in/favicon.ico">
+    <meta name="apple-mobile-web-app-title" content="J&uacute;ne's Cloud Platform">
+    <meta name="application-name" content="J&uacute;ne's Cloud Platform">
+    <meta name="msapplication-TileColor" content="#ffc40d">
+    <meta name="msapplication-config" content="https://cdn.meson.one/f/cloud.meson.in/browserconfig.xml">
+    <meta name="theme-color" content="#c8ac61">
+
+</head>
+<body>
+
+<div class="bg-pattern" aria-hidden="true">
+<svg viewBox="0 0 1400 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="g1" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#fff3e0" stop-opacity="1"/><stop offset="100%" stop-color="#fff3e0" stop-opacity="0"/></radialGradient>
+    <radialGradient id="g2" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#e8f0fe" stop-opacity="1"/><stop offset="100%" stop-color="#e8f0fe" stop-opacity="0"/></radialGradient>
+    <radialGradient id="g3" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#fff3e0" stop-opacity="1"/><stop offset="100%" stop-color="#fff3e0" stop-opacity="0"/></radialGradient>
+    <radialGradient id="g4" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#e6f4ea" stop-opacity="1"/><stop offset="100%" stop-color="#e6f4ea" stop-opacity="0"/></radialGradient>
+  </defs>
+  <circle class="bp-circle" cx="180" cy="160" r="360" fill="url(#g1)"/>
+  <circle class="bp-circle" cx="1220" cy="700" r="300" fill="url(#g2)"/>
+  <circle class="bp-circle" cx="900" cy="100" r="260" fill="url(#g3)"/>
+  <circle class="bp-circle" cx="300" cy="750" r="220" fill="url(#g4)"/>
+  <line x1="0" y1="200" x2="1400" y2="200" stroke="#e2e6f0" stroke-width="1" opacity=".4"/>
+  <line x1="0" y1="450" x2="1400" y2="450" stroke="#e2e6f0" stroke-width="1" opacity=".4"/>
+  <line x1="0" y1="700" x2="1400" y2="700" stroke="#e2e6f0" stroke-width="1" opacity=".4"/>
+  <line x1="350" y1="0" x2="350" y2="900" stroke="#e2e6f0" stroke-width="1" opacity=".4"/>
+  <line x1="700" y1="0" x2="700" y2="900" stroke="#e2e6f0" stroke-width="1" opacity=".4"/>
+  <line x1="1050" y1="0" x2="1050" y2="900" stroke="#e2e6f0" stroke-width="1" opacity=".4"/>
+</svg>
+</div>
+
+<div class="clock-bar" role="status" aria-label="World clocks">
+  <div class="clock-zone cz-local"><div class="cz-dot"></div><div class="cz-label">Local Time</div><div class="cz-time" id="tz-local">--:--:--</div><div class="cz-date" id="tz-local-d">---</div></div>
+  <div class="clock-zone cz-utc"><div class="cz-dot"></div><div class="cz-label">UTC+0</div><div class="cz-time" id="tz-utc">--:--:--</div><div class="cz-date" id="tz-utc-d">---</div></div>
+  <div class="clock-zone cz-sgt"><div class="cz-dot"></div><div class="cz-label">Singapore SGT</div><div class="cz-time" id="tz-sgt">--:--:--</div><div class="cz-date" id="tz-sgt-d">---</div></div>
+  <div class="clock-zone cz-bos"><div class="cz-dot"></div><div class="cz-label">Boston EST</div><div class="cz-time" id="tz-bos">--:--:--</div><div class="cz-date" id="tz-bos-d">---</div></div>
+</div>
+
+<main class="page" role="main">
+  <div class="err-card" role="alert" aria-labelledby="err-title">
+
+    <div class="err-band">
+      <div class="err-number" aria-hidden="true">404</div>
+      <div class="err-icon-wrap" aria-hidden="true">
+        <div class="err-icon-ring"></div>
+        <div class="err-icon-ring"></div>
+        <div class="err-icon-ring"></div>
+        <div class="err-icon-circle">
+          <span class="material-icons-round">search_off</span>
+        </div>
+      </div>
+      <div class="err-code">HTTP 404</div>
+      <h1 class="err-title" id="err-title">Page Not Found</h1>
+      <p class="err-subtitle">The resource you requested could not be located.</p>
+    </div>
+
+    <div class="err-body">
+
+      <div class="err-path-box">
+        <span class="material-icons-round">terminal</span>
+        <span class="err-path-text"><em id="err-path">/</em></span>
+      </div>
+
+      <div class="err-message">
+        <strong>Nothing here.</strong> The page or file at this address doesn't exist,
+        may have been moved, or the URL might be incorrect.
+      </div>
+
+      <div class="err-info">
+        <div class="err-info-row">
+          <span class="material-icons-round">link_off</span>
+          <span>Double-check the URL for typos or missing path segments</span>
+        </div>
+        <div class="err-info-row">
+          <span class="material-icons-round">history</span>
+          <span>The resource may have been relocated or removed</span>
+        </div>
+        <div class="err-info-row">
+          <span class="material-icons-round">support_agent</span>
+          <span>Persistent issue? Reach out to <strong>june@meson.one</strong></span>
+        </div>
+      </div>
+
+      <div class="err-actions">
+        <a class="btn btn-primary" href="/">
+          <span class="material-icons-round">home</span>Portal Home
+        </a>
+        <button class="btn btn-outline" onclick="history.back()">
+          <span class="material-icons-round">arrow_back</span>Go Back
+        </button>
+      </div>
+
+      <div class="countdown-bar-wrap">
+        <div class="countdown-label">
+          <span><span class="material-icons-round">schedule</span>Redirecting to Portal Home</span>
+          <span class="countdown-num"><span id="cd-num">10</span>s</span>
+        </div>
+        <div class="countdown-track">
+          <div class="countdown-fill" id="cd-fill"></div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</main>
+
+<footer class="portal-footer">
+  <div class="pf-brand">
+    <div class="pf-logo"><span class="material-icons-round">hub</span></div>
+    <div>
+      <div class="pf-name">Meson Systematics</div>
+      <div class="pf-tagline">Powered by Thomas J. Park</div>
+    </div>
+  </div>
+  <div class="pf-links">
+    <a class="pf-link" href="https://meson.one" target="_blank"><span class="material-icons-round">language</span>meson.one</a>
+    <div class="pf-divider"></div>
+    <a class="pf-link" href="mailto:june@meson.one"><span class="material-icons-round">mail</span>june@meson.one</a>
+  </div>
+</footer>
+
+<script>
+const zones=[
+  {t:'tz-local',d:'tz-local-d',tz:null},
+  {t:'tz-utc',  d:'tz-utc-d',  tz:'UTC'},
+  {t:'tz-sgt',  d:'tz-sgt-d',  tz:'Asia/Singapore'},
+  {t:'tz-bos',  d:'tz-bos-d',  tz:'America/New_York'},
+];
+function fmtTime(date,tz){return date.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit',second:'2-digit',timeZone:tz||undefined});}
+function fmtDate(date,tz){return date.toLocaleDateString('en-GB',{weekday:'short',month:'short',day:'numeric',timeZone:tz||undefined});}
+function tickClocks(){const now=new Date();zones.forEach(z=>{document.getElementById(z.t).textContent=fmtTime(now,z.tz);document.getElementById(z.d).textContent=fmtDate(now,z.tz);});}
+tickClocks();setInterval(tickClocks,1000);
+
+/* Show the requested path in the terminal box */
+const pathEl=document.getElementById('err-path');
+try{pathEl.textContent=window.location.pathname+(window.location.search||'');}catch(e){}
+
+/* Countdown redirect */
+(function(){
+  const TOTAL = 10;
+  let remaining = TOTAL;
+  const numEl  = document.getElementById('cd-num');
+  const fillEl = document.getElementById('cd-fill');
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      fillEl.style.width = '0%';
+    });
+  });
+  const timer = setInterval(() => {
+    remaining--;
+    numEl.textContent = remaining;
+    if (remaining <= 0) {
+      clearInterval(timer);
+      window.location.href = '/';
+    }
+  }, 1000);
+})();
+
+</script>
+</body>
+</html>
