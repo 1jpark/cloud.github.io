@@ -2,562 +2,391 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Meson Cloud Portal</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,500;0,9..40,700;1,9..40,300&family=DM+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+<meta name="description" content="Cloud portal by Thomas Júne Park. Links to all cloud services.">
+<meta name="theme-color" content="#c8ac61">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0&display=block" rel="stylesheet">
+
+<link rel="apple-touch-icon" sizes="180x180" href="https://cdn.meson.one/f/cloud.meson.in/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://cdn.meson.one/f/cloud.meson.in/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://cdn.meson.one/f/cloud.meson.in/favicon-16x16.png">
+<link rel="manifest" href="https://cdn.meson.one/f/cloud.meson.in/site.webmanifest">
+<link rel="mask-icon" href="https://cdn.meson.one/f/cloud.meson.in/safari-pinned-tab.svg" color="#c8ac61">
+<link rel="shortcut icon" href="https://cdn.meson.one/f/cloud.meson.in/favicon.ico">
+<meta name="apple-mobile-web-app-title" content="Júne's Cloud Platform">
+<meta name="application-name" content="Júne's Cloud Platform">
+<meta name="msapplication-TileColor" content="#ffc40d">
+<meta name="msapplication-config" content="https://cdn.meson.one/f/cloud.meson.in/browserconfig.xml">
+<meta property="og:image:width" content="1806">
+<meta property="og:image:height" content="946">
+<meta property="og:title" content="Meson's Cloud Platforms">
+<meta property="og:description" content="Cloud Portal by Thomas Júne Park | Link to all cloud services">
+<meta property="og:image" content="https://cdn.meson.one/o/cloud_meson.png">
+<meta property="og:url" content="https://meson.one/">
+<meta property="profile:first_name" content="Júne">
+<meta property="profile:last_name" content="Park">
+
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --c1:#1a73e8;--c2:#ea4335;--c3:#fbbc04;--c4:#34a853;
-  --c5:#fa7b17;--c6:#9c27b0;--c7:#00bcd4;--c8:#e91e63;
-  --ink:#1c1f26;--ink2:#3d4350;--ink3:#6b7280;
-  --surf:#ffffff;--surf2:#f4f6fb;--surf3:#eef1f8;
-  --border:#e2e6f0;
-  --radius:18px;--radius-sm:12px;
-  --shadow:0 2px 12px rgba(26,115,232,0.10);
-  --font:'DM Sans',sans-serif;
-  --mono:'DM Mono',monospace;
-  --serif:'Playfair Display',serif;
+  color-scheme:light dark;
+  --bg:#f3f0ea;--surface:#fbfaf7;--tonal:#e9e5db;--outline:#d8d2c4;
+  --ink:#26302f;--ink2:#556160;--ink3:#76827f;
+  --primary:#3f6b6e;--primary-c:#d4e4e2;--on-primary:#fff;--birch:#c8ac61;
+  --sky:#e6e1d4;--hill1:#cdd6cb;--hill2:#a9bcb4;--hill3:#7b9a98;--hill4:#3f6b6e;--cloud:#fbfaf7;
+  --r-lg:28px;--r-md:16px;--r-sm:12px;
+  --e1:0 1px 2px rgba(38,48,47,.08),0 1px 3px rgba(38,48,47,.06);
+  --e2:0 2px 6px rgba(38,48,47,.10),0 8px 20px rgba(38,48,47,.06);
+  --font:'Albert Sans',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --mono:'DM Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+  --ease:cubic-bezier(.2,0,0,1);
 }
-html{scroll-behavior:smooth}
-body{font-family:var(--font);background:var(--surf2);color:var(--ink);min-height:100vh;overflow-x:hidden}
+@media(prefers-color-scheme:dark){:root{
+  --bg:#1a2120;--surface:#232b2a;--tonal:#2c3635;--outline:#3b4846;
+  --ink:#e8ece9;--ink2:#b2bdba;--ink3:#8a9794;
+  --primary:#8fc1c3;--primary-c:#2f4b4d;--on-primary:#12302f;
+  --sky:#2a3433;--hill1:#33403e;--hill2:#3d4f4c;--hill3:#4b6764;--hill4:#6f9c9b;--cloud:#3a4846;
+  --e1:0 1px 2px rgba(0,0,0,.4);--e2:0 4px 16px rgba(0,0,0,.4);
+}}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{font-family:var(--font);background:var(--bg);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased;min-height:100vh}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:3px solid var(--primary);outline-offset:3px;border-radius:8px}
+.ms{font-family:'Material Symbols Rounded';font-weight:400;font-style:normal;font-size:24px;line-height:1;display:inline-block;letter-spacing:normal;white-space:nowrap;-webkit-font-feature-settings:'liga';font-feature-settings:'liga';user-select:none;flex-shrink:0}
+.wrap{max-width:1120px;margin:0 auto;padding:0 clamp(16px,4vw,32px)}
 
-.bg-pattern{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
-.bg-pattern svg{width:100%;height:100%;opacity:.55}
-.bp-circle{animation:bpFloat 18s ease-in-out infinite alternate}
-.bp-circle:nth-child(2){animation-duration:24s;animation-delay:-6s}
-.bp-circle:nth-child(3){animation-duration:20s;animation-delay:-12s}
-.bp-circle:nth-child(4){animation-duration:15s;animation-delay:-3s}
-@keyframes bpFloat{0%{transform:translate(0,0) scale(1)}100%{transform:translate(40px,25px) scale(1.06)}}
+/* Top app bar */
+.appbar{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--outline)}
+.appbar .wrap{display:flex;align-items:center;gap:16px;height:64px}
+.brand{display:flex;align-items:center;gap:12px;font-weight:700;font-size:17px;letter-spacing:-.01em}
+.brand-mark{width:36px;height:36px;border-radius:12px;background:var(--primary);color:var(--on-primary);display:grid;place-items:center}
+.brand-mark .ms{font-size:22px}
+.nav{margin-left:auto;display:flex;gap:4px}
+.nav a{padding:8px 16px;border-radius:20px;font-size:14px;font-weight:500;color:var(--ink2);transition:background .2s var(--ease),color .2s}
+.nav a:hover{background:var(--tonal);color:var(--ink)}
 
-.page{position:relative;z-index:1;max-width:1160px;margin:0 auto;padding:0 24px 80px}
+/* Buttons */
+.btn{display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 22px;border-radius:22px;font:600 14px var(--font);border:0;cursor:pointer;transition:box-shadow .2s var(--ease),background .2s,transform .2s}
+.btn .ms{font-size:20px}
+.btn-filled{background:var(--primary);color:var(--on-primary)}
+.btn-filled:hover{box-shadow:var(--e2);transform:translateY(-1px)}
+.btn-tonal{background:var(--primary-c);color:var(--ink)}
+.btn-tonal:hover{box-shadow:var(--e1);transform:translateY(-1px)}
 
-/* Clock Bar */
-.clock-bar{
-  display:flex;align-items:stretch;
-  background:var(--ink);border-radius:0 0 20px 20px;
-  margin:0 -2px 40px;overflow:hidden;
-  box-shadow:0 4px 24px rgba(28,31,38,.22);
-  animation:slideDown .6s cubic-bezier(.16,1,.3,1) both;
-}
-@keyframes slideDown{from{opacity:0;transform:translateY(-24px)}to{opacity:1;transform:translateY(0)}}
-.clock-zone{
-  flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
-  padding:14px 10px;gap:2px;position:relative;
-  border-right:1px solid rgba(255,255,255,.08);transition:background .2s;
-}
-.clock-zone:last-child{border-right:none}
-.clock-zone:hover{background:rgba(255,255,255,.06)}
-.cz-label{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.45);font-weight:500}
-.cz-time{font-family:var(--mono);font-size:20px;color:#fff;font-weight:500;letter-spacing:.04em;line-height:1}
-.cz-date{font-size:10px;color:rgba(255,255,255,.40);margin-top:1px}
-.cz-dot{width:6px;height:6px;border-radius:50%;position:absolute;top:10px;right:10px;animation:pulse 2s ease infinite}
-.cz-local .cz-dot{background:var(--c4);box-shadow:0 0 8px var(--c4)}
-.cz-utc   .cz-dot{background:var(--c7);box-shadow:0 0 8px var(--c7)}
-.cz-sgt   .cz-dot{background:var(--c3);box-shadow:0 0 8px var(--c3)}
-.cz-bos   .cz-dot{background:var(--c8);box-shadow:0 0 8px var(--c8)}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+/* Hero */
+.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(24px,5vw,56px);align-items:center;padding:clamp(32px,6vw,72px) 0 28px}
+.hero h1{font-size:clamp(38px,6vw,64px);line-height:1.02;font-weight:800;letter-spacing:-.035em;max-width:11ch}
+.hero p{margin-top:20px;font-size:18px;color:var(--ink2);max-width:46ch}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+.scene{border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--e1);background:var(--sky);aspect-ratio:6/5}
+.scene svg{display:block;width:100%;height:100%}
+.sun{animation:rise 1.8s var(--ease) both}
+@keyframes rise{from{transform:translateY(70px);opacity:0}to{transform:none;opacity:1}}
 
-/* Portal Header */
-.portal-header{
-  display:flex;align-items:flex-start;justify-content:space-between;gap:24px;
-  margin-bottom:44px;flex-wrap:wrap;
-  animation:fadeUp .6s cubic-bezier(.16,1,.3,1) .1s both;
-}
-@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-.ph-brand{display:flex;align-items:center;gap:14px}
-.ph-logo{width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,var(--c1),#0d47a1);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 18px rgba(26,115,232,.35);}
-.ph-logo .material-icons-round{color:#fff;font-size:28px}
-.ph-text h1{font-family:var(--serif);font-size:32px;font-weight:700;color:var(--ink);line-height:1}
-.ph-text p{font-size:13px;color:var(--ink3);margin-top:4px}
-.ph-actions{display:flex;gap:8px;flex-wrap:wrap;align-items:flex-start;margin-top:6px}
-.btn-chip{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:40px;font-size:12px;font-weight:600;text-decoration:none;border:none;cursor:pointer;transition:all .2s;font-family:var(--font);}
-.btn-chip .material-icons-round{font-size:15px}
-.btn-primary{background:var(--c1);color:#fff;box-shadow:0 3px 12px rgba(26,115,232,.35)}
-.btn-primary:hover{background:#1557b0;box-shadow:0 5px 18px rgba(26,115,232,.45);transform:translateY(-1px)}
-.btn-outline{background:#fff;color:var(--ink2);border:1.5px solid var(--border)}
-.btn-outline:hover{border-color:var(--c1);color:var(--c1);transform:translateY(-1px)}
+/* Clocks */
+.clocks{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:56px}
+.clock{background:var(--surface);border:1px solid var(--outline);border-radius:var(--r-md);padding:14px 18px}
+.clock-city{font-size:13px;color:var(--ink3);font-weight:500;display:flex;align-items:center;gap:8px}
+.clock-city::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--birch)}
+.clock:first-child .clock-city::before{background:var(--primary)}
+.clock-time{font-family:var(--mono);font-size:24px;font-weight:500;margin-top:4px;letter-spacing:.01em}
+.clock-date{font-size:12px;color:var(--ink3)}
 
-/* Section */
-.section{margin-bottom:32px;border-radius:var(--radius);background:var(--surf);box-shadow:var(--shadow);overflow:hidden;animation:fadeUp .5s cubic-bezier(.16,1,.3,1) both;}
-.section:nth-child(1){animation-delay:.12s}
-.section:nth-child(2){animation-delay:.20s}
-.section:nth-child(3){animation-delay:.28s}
-.section:nth-child(4){animation-delay:.36s}
+/* Sections */
+details.sec{margin-bottom:24px;background:var(--surface);border:1px solid var(--outline);border-radius:var(--r-lg);box-shadow:var(--e1)}
+details.sec>summary{list-style:none;display:flex;align-items:center;gap:16px;padding:20px 24px;cursor:pointer;border-radius:var(--r-lg)}
+details.sec>summary::-webkit-details-marker{display:none}
+details.sec>summary:hover{background:color-mix(in srgb,var(--tonal) 55%,transparent)}
+.sec-icon{width:48px;height:48px;border-radius:16px;background:var(--primary-c);color:var(--primary);display:grid;place-items:center}
+.sec-text{flex:1;min-width:0}
+.sec-text h2{font-size:22px;font-weight:700;letter-spacing:-.015em;line-height:1.2}
+.sec-text p{font-size:14px;color:var(--ink3);margin-top:2px}
+.badge{font-size:13px;font-weight:600;padding:4px 12px;border-radius:12px;background:var(--tonal);color:var(--ink2);white-space:nowrap}
+.chev{color:var(--ink3);transition:transform .3s var(--ease)}
+details[open]>summary .chev{transform:rotate(180deg)}
+.sec-body{padding:4px 24px 28px}
 
-.sec-toggle{display:flex;align-items:center;gap:14px;padding:20px 24px;cursor:pointer;user-select:none;transition:background .18s;border-bottom:1px solid var(--border);}
-.sec-toggle:hover{background:var(--surf2)}
-.sec-icon{width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.sec-icon .material-icons-round{font-size:22px;color:#fff}
-.si-blue  {background:linear-gradient(135deg,#1a73e8,#0d47a1)}
-.si-cyan  {background:linear-gradient(135deg,#00bcd4,#006064)}
-.si-orange{background:linear-gradient(135deg,#fa7b17,#e65100)}
-.sec-title-wrap{flex:1}
-.sec-title{font-size:17px;font-weight:700;color:var(--ink)}
-.sec-sub{font-size:12px;color:var(--ink3);margin-top:2px}
-.sec-badge{font-size:11px;font-weight:600;padding:3px 10px;border-radius:20px;background:var(--surf3);color:var(--ink3);border:1px solid var(--border);white-space:nowrap;}
-.sec-chevron{width:32px;height:32px;border-radius:50%;background:var(--surf3);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform .3s cubic-bezier(.16,1,.3,1),background .18s;}
-.sec-chevron .material-icons-round{font-size:20px;color:var(--ink3);transition:transform .3s}
-.section.open .sec-chevron{background:var(--c1)}
-.section.open .sec-chevron .material-icons-round{color:#fff;transform:rotate(180deg)}
+.tier{display:flex;align-items:center;gap:12px;margin:24px 0 14px}
+.tier:first-child{margin-top:8px}
+.tier span{font-size:14px;font-weight:600;color:var(--ink2);white-space:nowrap}
+.tier i{flex:1;height:1px;background:var(--outline)}
 
-.sec-body{max-height:0;overflow:hidden;transition:max-height .45s cubic-bezier(.16,1,.3,1);}
-.section.open .sec-body{max-height:3000px}
-.sec-inner{padding:20px 24px 24px}
-
-.tier-header{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
-.tier-header+.tier-header,.cloud-grid+.tier-header{margin-top:22px}
-.tier-label{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:3px 10px;border-radius:20px;white-space:nowrap;}
-.tl-1{background:rgba(26,115,232,.10);color:var(--c1);border:1px solid rgba(26,115,232,.22)}
-.tl-2{background:rgba(52,168,83,.10);color:var(--c4);border:1px solid rgba(52,168,83,.22)}
-.tl-3{background:rgba(250,123,23,.10);color:var(--c5);border:1px solid rgba(250,123,23,.22)}
-.tier-line{flex:1;height:1px;background:var(--border)}
-
-/* Cloud Cards */
-.cloud-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px}
-
-.cloud-card{
-  display:flex;flex-direction:column;
-  background:var(--surf);border:1.5px solid var(--border);
-  border-radius:var(--radius-sm);overflow:hidden;
-  text-decoration:none;color:inherit;
-  transition:all .24s ease;position:relative;
-}
-.cloud-card:hover{
-  border-color:var(--accent,var(--c1));
-  transform:translateY(-3px);
-  box-shadow:0 8px 28px color-mix(in srgb,var(--accent,var(--c1)) 22%,transparent);
-}
-.cc-head{
-  height:68px;
-  background:linear-gradient(135deg,
-    color-mix(in srgb,var(--accent,var(--c1)) 14%,white),
-    color-mix(in srgb,var(--accent,var(--c1)) 6%,white));
-  display:flex;align-items:center;justify-content:center;position:relative;
-  border-bottom:1.5px solid color-mix(in srgb,var(--accent,var(--c1)) 16%,transparent);
-  transition:background .24s;
-}
-.cloud-card:hover .cc-head{
-  background:linear-gradient(135deg,
-    color-mix(in srgb,var(--accent,var(--c1)) 24%,white),
-    color-mix(in srgb,var(--accent,var(--c1)) 10%,white));
-}
-.cc-icon{
-  width:46px;height:46px;border-radius:12px;background:#fff;
-  border:1.5px solid color-mix(in srgb,var(--accent,var(--c1)) 22%,transparent);
-  box-shadow:0 3px 12px color-mix(in srgb,var(--accent,var(--c1)) 22%,rgba(0,0,0,.06));
-  display:flex;align-items:center;justify-content:center;
-  overflow:hidden;transition:transform .22s,box-shadow .22s;
-}
-.cloud-card:hover .cc-icon{
-  transform:scale(1.10);
-  box-shadow:0 5px 20px color-mix(in srgb,var(--accent,var(--c1)) 32%,rgba(0,0,0,.08));
-}
-.cc-icon img{width:30px;height:30px;object-fit:contain;display:block}
-.cc-icon .material-icons-round{font-size:22px;color:var(--accent,var(--c1))}
-.cc-icon.loading{
-  background:linear-gradient(90deg,#eef1f8 25%,#e2e6f0 50%,#eef1f8 75%);
-  background-size:200% 100%;animation:shimmer 1.4s ease infinite;
-}
-@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
-
-.cc-arrow{
-  position:absolute;top:8px;right:8px;width:24px;height:24px;border-radius:50%;
-  background:color-mix(in srgb,var(--accent,var(--c1)) 12%,white);
-  border:1px solid color-mix(in srgb,var(--accent,var(--c1)) 28%,transparent);
-  display:flex;align-items:center;justify-content:center;
-  opacity:0;transform:translate(4px,-4px);transition:all .2s;
-}
-.cc-arrow .material-icons-round{font-size:13px;color:var(--accent,var(--c1))}
-.cloud-card:hover .cc-arrow{opacity:1;transform:translate(0,0)}
-
-/* Accent stripe */
-.cloud-card::before{
-  content:'';position:absolute;left:0;top:0;bottom:0;width:3px;
-  background:var(--accent,var(--c1));
-  transform:scaleY(0);transform-origin:bottom;
-  transition:transform .26s cubic-bezier(.16,1,.3,1);
-}
-.cloud-card:hover::before{transform:scaleY(1)}
-
-.cc-body{padding:11px 14px 14px}
-.cc-name{font-size:13px;font-weight:700;color:var(--accent,var(--c1));white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.cc-host{font-size:10.5px;color:var(--ink3);margin-top:1px;font-family:var(--mono)}
-.cc-desc{font-size:11px;color:var(--ink3);margin-top:7px;line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:calc(1.5em * 2);}
+/* Instance cards */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px}
+.card{position:relative;display:flex;flex-direction:column;gap:14px;padding:18px;background:var(--bg);border:1px solid var(--outline);border-radius:var(--r-md);overflow:hidden;transition:transform .25s var(--ease),box-shadow .25s var(--ease),border-color .25s}
+.card::after{content:'';position:absolute;left:0;right:0;top:0;height:3px;background:var(--accent);opacity:.85}
+.card:hover{transform:translateY(-3px);box-shadow:var(--e2);border-color:color-mix(in srgb,var(--accent) 55%,var(--outline))}
+.card-top{display:flex;align-items:center;justify-content:space-between}
+.fav{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:color-mix(in srgb,var(--accent) 14%,var(--surface));border:1px solid color-mix(in srgb,var(--accent) 30%,transparent)}
+.fav img{width:28px;height:28px;object-fit:contain}
+.fav .ms{color:var(--accent);font-size:24px}
+.fav.loading{animation:pulse 1.2s ease infinite}
+@keyframes pulse{50%{opacity:.45}}
+.go{color:var(--ink3);opacity:0;transform:translate(-4px,4px);transition:all .25s var(--ease);font-size:20px}
+.card:hover .go{opacity:1;transform:none;color:var(--accent)}
+.card h3{font-size:16px;font-weight:700;letter-spacing:-.01em;line-height:1.25}
+.host{font:400 12px var(--mono);color:var(--ink3);margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.desc{font-size:13px;color:var(--ink2);line-height:1.45;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 
 /* Commercial */
-.comm-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
-.comm-card{background:var(--surf2);border:1.5px solid var(--border);border-radius:var(--radius-sm);overflow:hidden;transition:all .22s;}
-.comm-card:hover{border-color:currentColor;box-shadow:0 6px 24px rgba(0,0,0,.10);transform:translateY(-2px)}
-.comm-head{display:flex;align-items:center;gap:12px;padding:16px 18px 12px;border-bottom:1px solid var(--border);}
-.comm-logo{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
-.comm-name{font-size:15px;font-weight:700;color:var(--ink)}
-.comm-links{display:flex;flex-direction:column}
-.comm-link{display:flex;align-items:center;gap:10px;padding:11px 18px;text-decoration:none;color:var(--ink2);font-size:12.5px;font-weight:500;border-bottom:1px solid rgba(0,0,0,.04);transition:background .15s,color .15s;}
-.comm-link:last-child{border-bottom:none}
-.comm-link:hover{background:var(--surf3);color:var(--c1)}
-.comm-link .material-icons-round{font-size:15px;color:var(--ink3);flex-shrink:0}
-.comm-link:hover .material-icons-round{color:var(--c1)}
-.comm-link-text{flex:1}
-.comm-arr{font-size:13px;color:var(--ink3);transition:transform .15s}
-.comm-link:hover .comm-arr{transform:translate(2px,-2px);color:var(--c1)}
-.dropbox-card .comm-logo{background:#e8f0fe;color:#1a73e8}
-.dropbox-card .comm-head{border-bottom-color:#e8f0fe}
-.box-card .comm-logo{background:#e6f4ea;color:#34a853}
-.box-card .comm-head{border-bottom-color:#e6f4ea}
-.od-card .comm-logo{background:#e8f0fe;color:#0078d4}
-.od-card .comm-head{border-bottom-color:#e8f0fe}
-.gd-card .comm-logo{background:#fce8e6;color:#ea4335}
-.gd-card .comm-head{border-bottom-color:#fce8e6}
+.comm{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px;margin-top:8px}
+.comm-card{background:var(--bg);border:1px solid var(--outline);border-radius:var(--r-md);overflow:hidden}
+.comm-head{display:flex;align-items:center;gap:12px;padding:16px 18px}
+.comm-head img{width:32px;height:32px;object-fit:contain}
+.comm-head h3{font-size:17px;font-weight:700}
+.comm-link{display:flex;align-items:center;gap:12px;padding:12px 18px;font-size:14px;font-weight:500;border-top:1px solid var(--outline);color:var(--ink2);transition:background .2s,color .2s}
+.comm-link:hover{background:var(--primary-c);color:var(--ink)}
+.comm-link .ms{font-size:20px;color:var(--primary)}
+.comm-link span:nth-child(2){flex:1}
+.comm-link .ms:last-child{font-size:18px;color:var(--ink3)}
 
 /* Transfer */
-.transfer-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
-.transfer-btn{display:flex;flex-direction:column;align-items:flex-start;gap:8px;padding:18px 20px;border-radius:var(--radius-sm);text-decoration:none;color:#fff;transition:all .22s;position:relative;overflow:hidden;}
-.transfer-btn::after{content:'';position:absolute;inset:0;background:rgba(255,255,255,0);transition:background .22s;}
-.transfer-btn:hover::after{background:rgba(255,255,255,.10)}
-.transfer-btn:hover{transform:translateY(-3px);box-shadow:0 10px 30px rgba(0,0,0,.25)}
-.transfer-btn .material-icons-round{font-size:26px;opacity:.9}
-.tb-name{font-size:13.5px;font-weight:700;line-height:1.2}
-.tb-host{font-size:10.5px;opacity:.70;font-family:var(--mono)}
-.tb-arr{position:absolute;top:14px;right:14px;opacity:0;transform:translate(4px,-4px);transition:all .2s;}
-.transfer-btn:hover .tb-arr{opacity:.9;transform:translate(0,0)}
-.tb-a{background:linear-gradient(135deg,#1a73e8,#1565c0)}
-.tb-b{background:linear-gradient(135deg,#9c27b0,#6a1b9a)}
-.tb-c{background:linear-gradient(135deg,#34a853,#1b5e20)}
-.tb-d{background:linear-gradient(135deg,#00bcd4,#006064)}
-.tb-e{background:linear-gradient(135deg,#fa7b17,#bf360c)}
-.auth-notice{display:inline-flex;align-items:center;gap:6px;font-size:11px;color:var(--ink3);padding:6px 12px;background:var(--surf3);border-radius:20px;border:1px solid var(--border);margin-bottom:16px;}
-.auth-notice .material-icons-round{font-size:14px;color:var(--c5)}
+.notice{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--ink2);background:var(--tonal);padding:6px 14px 6px 10px;border-radius:16px;margin:8px 0 18px}
+.notice .ms{font-size:18px;color:var(--primary)}
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
+.tile{display:flex;flex-direction:column;gap:16px;padding:20px;border-radius:var(--r-md);background:color-mix(in srgb,var(--accent) 13%,var(--surface));border:1px solid color-mix(in srgb,var(--accent) 28%,transparent);transition:transform .25s var(--ease),box-shadow .25s}
+.tile:hover{transform:translateY(-3px);box-shadow:var(--e2)}
+.tile .ms{color:var(--accent);font-size:30px}
+.tile h3{font-size:16px;font-weight:700;line-height:1.25}
+.tile .host{margin-top:4px}
 
 /* Footer */
-.portal-footer{margin-top:48px;padding:22px 28px;background:var(--ink);border-radius:var(--radius);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;animation:fadeUp .5s cubic-bezier(.16,1,.3,1) .4s both;}
-.pf-brand{display:flex;align-items:center;gap:12px}
-.pf-logo{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--c1),#0d47a1);display:flex;align-items:center;justify-content:center}
-.pf-logo .material-icons-round{color:#fff;font-size:20px}
-.pf-name{font-size:14px;font-weight:700;color:#fff}
-.pf-tagline{font-size:11px;color:rgba(255,255,255,.45);margin-top:1px}
-.pf-links{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
-.pf-link{font-size:12px;color:rgba(255,255,255,.55);text-decoration:none;display:flex;align-items:center;gap:5px;transition:color .18s}
-.pf-link:hover{color:#fff}
-.pf-link .material-icons-round{font-size:14px}
-.pf-divider{width:1px;height:14px;background:rgba(255,255,255,.15)}
+footer{margin:56px 0 32px;padding:24px 28px;border-radius:var(--r-lg);background:var(--tonal);display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.foot-name{font-weight:700}
+.foot-sub{font-size:13px;color:var(--ink3)}
+.foot-links{display:flex;gap:8px;flex-wrap:wrap}
+.foot-links a{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:18px;font-size:13px;font-weight:500;color:var(--ink2);transition:background .2s}
+.foot-links a:hover{background:var(--surface);color:var(--ink)}
+.foot-links .ms{font-size:18px}
 
-@media(max-width:700px){
-  .clock-bar{flex-wrap:wrap}
-  .clock-zone{min-width:50%;border-bottom:1px solid rgba(255,255,255,.08)}
-  .cloud-grid,.comm-grid,.transfer-grid{grid-template-columns:1fr 1fr}
-  .page{padding:0 14px 60px}
-  .ph-text h1{font-size:26px}
-  .sec-inner{padding:16px}
+@media(max-width:820px){
+  .hero{grid-template-columns:1fr}
+  .hero h1{max-width:none}
+  .scene{aspect-ratio:16/9;order:-1}
+  .clocks{grid-template-columns:1fr 1fr}
+  .nav{display:none}
+  .appbar .btn{margin-left:auto}
 }
-@media(max-width:440px){
-  .cloud-grid,.comm-grid,.transfer-grid{grid-template-columns:1fr}
+@media(max-width:520px){
+  details.sec>summary{padding:16px;gap:12px}
+  .sec-body{padding:0 16px 22px}
+  .badge{display:none}
+  .grid,.tiles,.comm{grid-template-columns:1fr}
+  .hero p{font-size:16px}
 }
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
 </style>
-
-    <!--Meta Keywords and Description-->
-    <meta name="keywords" content="">
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
-    <meta name="theme-color" content="#C8AC61">
-
-    <!-- Favicon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="https://cdn.meson.one/f/cloud.meson.in/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="https://cdn.meson.one/f/cloud.meson.in/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="https://cdn.meson.one/f/cloud.meson.in/favicon-16x16.png">
-    <link rel="manifest" href="https://cdn.meson.one/f/cloud.meson.in/site.webmanifest">
-    <link rel="mask-icon" href="https://cdn.meson.one/f/cloud.meson.in/safari-pinned-tab.svg" color="#c8ac61">
-    <link rel="shortcut icon" href="https://cdn.meson.one/f/cloud.meson.in/favicon.ico">
-    <meta name="apple-mobile-web-app-title" content="J&uacute;ne's Cloud Platform">
-    <meta name="application-name" content="J&uacute;ne's Cloud Platform">
-    <meta name="msapplication-TileColor" content="#ffc40d">
-    <meta name="msapplication-config" content="https://cdn.meson.one/f/cloud.meson.in/browserconfig.xml">
-    <meta name="theme-color" content="#c8ac61">
-
-		<meta property="og:image:width" content="1806">
-		<meta property="og:image:height" content="946">
-		<meta property="og:title" content="Meson's Cloud Platforms">
-		<meta property="og:description" content="Cloud Portal by Thomas J&uacute;ne Park | Link to all cloud services ">
-		<meta property="og:image" content="https://cdn.meson.one/o/cloud_meson.png">
-		<meta property="og:url" content="https://meson.one/">
-		<meta property="profile:first_name" content="Júne">
-		<meta property="profile:last_name" content="Park">
-	
 </head>
 <body>
 
-<div class="bg-pattern" aria-hidden="true">
-<svg viewBox="0 0 1400 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <radialGradient id="g1" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#e8f0fe" stop-opacity="1"/><stop offset="100%" stop-color="#e8f0fe" stop-opacity="0"/></radialGradient>
-    <radialGradient id="g2" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#e6f4ea" stop-opacity="1"/><stop offset="100%" stop-color="#e6f4ea" stop-opacity="0"/></radialGradient>
-    <radialGradient id="g3" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#fff8e1" stop-opacity="1"/><stop offset="100%" stop-color="#fff8e1" stop-opacity="0"/></radialGradient>
-    <radialGradient id="g4" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#fce4ec" stop-opacity="1"/><stop offset="100%" stop-color="#fce4ec" stop-opacity="0"/></radialGradient>
-  </defs>
-  <circle class="bp-circle" cx="180" cy="160" r="360" fill="url(#g1)"/>
-  <circle class="bp-circle" cx="1220" cy="700" r="300" fill="url(#g2)"/>
-  <circle class="bp-circle" cx="900" cy="100" r="260" fill="url(#g3)"/>
-  <circle class="bp-circle" cx="300" cy="750" r="220" fill="url(#g4)"/>
-  <line x1="0" y1="200" x2="1400" y2="200" stroke="#e2e6f0" stroke-width="1" opacity=".4"/>
-  <line x1="0" y1="450" x2="1400" y2="450" stroke="#e2e6f0" stroke-width="1" opacity=".4"/>
-  <line x1="0" y1="700" x2="1400" y2="700" stroke="#e2e6f0" stroke-width="1" opacity=".4"/>
-  <line x1="350" y1="0" x2="350" y2="900" stroke="#e2e6f0" stroke-width="1" opacity=".4"/>
-  <line x1="700" y1="0" x2="700" y2="900" stroke="#e2e6f0" stroke-width="1" opacity=".4"/>
-  <line x1="1050" y1="0" x2="1050" y2="900" stroke="#e2e6f0" stroke-width="1" opacity=".4"/>
-</svg>
-</div>
+<header class="appbar">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Meson Cloud Portal">
+      <span class="brand-mark"><span class="ms" aria-hidden="true">cloud</span></span>
+      Meson Systematics
+    </a>
+    <nav class="nav" aria-label="Sections">
+      <a href="#clouds">Self-managed</a>
+      <a href="#commercial">Commercial</a>
+      <a href="#transfer">Transfer</a>
+    </nav>
+    <a class="btn btn-tonal" href="https://meson.one" target="_blank" rel="noopener"><span class="ms" aria-hidden="true">home</span>Main site</a>
+  </div>
+</header>
 
-<div class="clock-bar" role="status" aria-label="World clocks">
-  <div class="clock-zone cz-local">
-    <div class="cz-dot"></div>
-    <div class="cz-label">Local Time</div>
-    <div class="cz-time" id="tz-local">--:--:--</div>
-    <div class="cz-date" id="tz-local-d">---</div>
-  </div>
-  <div class="clock-zone cz-utc">
-    <div class="cz-dot"></div>
-    <div class="cz-label">UTC+0</div>
-    <div class="cz-time" id="tz-utc">--:--:--</div>
-    <div class="cz-date" id="tz-utc-d">---</div>
-  </div>
-  <div class="clock-zone cz-sgt">
-    <div class="cz-dot"></div>
-    <div class="cz-label">Singapore SGT</div>
-    <div class="cz-time" id="tz-sgt">--:--:--</div>
-    <div class="cz-date" id="tz-sgt-d">---</div>
-  </div>
-  <div class="clock-zone cz-bos">
-    <div class="cz-dot"></div>
-    <div class="cz-label">Boston EST</div>
-    <div class="cz-time" id="tz-bos">--:--:--</div>
-    <div class="cz-date" id="tz-bos-d">---</div>
-  </div>
-</div>
+<main class="wrap" id="top">
 
-<div class="page">
-
-  <div class="portal-header">
-    <div class="ph-brand">
-      <div class="ph-logo"><span class="material-icons-round">cloud</span></div>
-      <div class="ph-text">
-        <h1>Meson Cloud Portal</h1>
-        <p>Unified access to all cloud resources · MESON SYSTEMATICS</p>
+  <section class="hero">
+    <div>
+      <h1>Meson Cloud Portal</h1>
+      <p>One place to reach every cloud resource, from research data and clinical platforms to shared files.</p>
+      <div class="hero-actions">
+        <a class="btn btn-filled" href="#clouds"><span class="ms" aria-hidden="true">cloud_queue</span>Browse clouds</a>
+        <a class="btn btn-tonal" href="mailto:june@meson.one"><span class="ms" aria-hidden="true">mail</span>june@meson.one</a>
       </div>
     </div>
-    <div class="ph-actions">
-      <a class="btn-chip btn-primary" href="https://meson.one" target="_blank">
-        <span class="material-icons-round">home</span>Main Site
-      </a>
-      <a class="btn-chip btn-outline" href="mailto:june@meson.one">
-        <span class="material-icons-round">mail</span>june@meson.one
-      </a>
+    <div class="scene" aria-hidden="true">
+      <svg viewBox="0 0 600 500" preserveAspectRatio="xMidYMid slice">
+        <circle class="sun" cx="410" cy="190" r="62" fill="var(--birch)"/>
+        <g fill="var(--cloud)" opacity=".95">
+          <rect x="70" y="110" width="150" height="30" rx="15"/><rect x="105" y="90" width="70" height="40" rx="20"/>
+          <rect x="300" y="70" width="110" height="24" rx="12"/><rect x="325" y="54" width="50" height="30" rx="15"/>
+        </g>
+        <path d="M0 300 Q90 210 190 270 T380 250 T600 280 V500 H0Z" fill="var(--hill1)"/>
+        <path d="M0 340 Q120 270 240 330 T470 310 T600 340 V500 H0Z" fill="var(--hill2)"/>
+        <path d="M0 390 Q150 330 300 385 T600 375 V500 H0Z" fill="var(--hill3)"/>
+        <path d="M0 440 Q170 400 330 440 T600 430 V500 H0Z" fill="var(--hill4)"/>
+        <g fill="var(--hill4)">
+          <path d="M92 440 l16 -52 l16 52Z"/><path d="M118 440 l12 -38 l12 38Z"/><path d="M490 432 l14 -46 l14 46Z"/>
+        </g>
+      </svg>
     </div>
+  </section>
+
+  <div class="clocks" role="group" aria-label="World clocks">
+    <div class="clock"><div class="clock-city">Local time</div><div class="clock-time" id="tz-local">--:--:--</div><div class="clock-date" id="tz-local-d">&nbsp;</div></div>
+    <div class="clock"><div class="clock-city">UTC</div><div class="clock-time" id="tz-utc">--:--:--</div><div class="clock-date" id="tz-utc-d">&nbsp;</div></div>
+    <div class="clock"><div class="clock-city">Singapore</div><div class="clock-time" id="tz-sgt">--:--:--</div><div class="clock-date" id="tz-sgt-d">&nbsp;</div></div>
+    <div class="clock"><div class="clock-city">Boston</div><div class="clock-time" id="tz-bos">--:--:--</div><div class="clock-date" id="tz-bos-d">&nbsp;</div></div>
   </div>
 
-  <!-- SECTION 1 -->
-  <div class="section open" id="sec-cloud">
-    <div class="sec-toggle" onclick="toggleSection('sec-cloud')" role="button" tabindex="0" aria-expanded="true">
-      <div class="sec-icon si-blue"><span class="material-icons-round">cloud_queue</span></div>
-      <div class="sec-title-wrap">
-        <div class="sec-title">Self Managed Clouds</div>
-        <div class="sec-sub">Personal Nextcloud infrastructure · meson.in · onni.me · meson.kr</div>
-      </div>
-      <div class="sec-badge">14 instances</div>
-      <div class="sec-chevron"><span class="material-icons-round">expand_more</span></div>
-    </div>
+  <details class="sec" id="clouds" open>
+    <summary>
+      <span class="sec-icon"><span class="ms" aria-hidden="true">cloud_queue</span></span>
+      <span class="sec-text"><h2>Self-managed clouds</h2><p>Personal Nextcloud instances on meson.in, onni.me and meson.kr</p></span>
+      <span class="badge" id="count">14 instances</span>
+      <span class="ms chev" aria-hidden="true">expand_more</span>
+    </summary>
     <div class="sec-body">
-      <div class="sec-inner">
-        <div class="tier-header"><span class="tier-label tl-1">Tier 1 — Primary</span><div class="tier-line"></div></div>
-        <div class="cloud-grid" id="grid-t1"></div>
-        <div class="tier-header"><span class="tier-label tl-2">Tier 2 — Secondary</span><div class="tier-line"></div></div>
-        <div class="cloud-grid" id="grid-t2"></div>
-        <div class="tier-header"><span class="tier-label tl-3">Tier 3 — Extended</span><div class="tier-line"></div></div>
-        <div class="cloud-grid" id="grid-t3"></div>
-      </div>
+      <div class="tier"><span>Tier 1: Primary</span><i></i></div>
+      <div class="grid" id="grid-t1"></div>
+      <div class="tier"><span>Tier 2: Secondary</span><i></i></div>
+      <div class="grid" id="grid-t2"></div>
+      <div class="tier"><span>Tier 3: Extended</span><i></i></div>
+      <div class="grid" id="grid-t3"></div>
     </div>
-  </div>
+  </details>
 
-  <!-- SECTION 2 -->
-  <div class="section open" id="sec-comm">
-    <div class="sec-toggle" onclick="toggleSection('sec-comm')" role="button" tabindex="0" aria-expanded="true">
-      <div class="sec-icon si-cyan"><span class="material-icons-round">store</span></div>
-      <div class="sec-title-wrap">
-        <div class="sec-title">Commercial Clouds</div>
-        <div class="sec-sub">Dropbox · Box · OneDrive · Google Drive</div>
-      </div>
-      <div class="sec-badge">4 services</div>
-      <div class="sec-chevron"><span class="material-icons-round">expand_more</span></div>
-    </div>
+  <details class="sec" id="commercial" open>
+    <summary>
+      <span class="sec-icon"><span class="ms" aria-hidden="true">storefront</span></span>
+      <span class="sec-text"><h2>Commercial clouds</h2><p>Dropbox, Box, OneDrive and Google Drive</p></span>
+      <span class="badge">4 services</span>
+      <span class="ms chev" aria-hidden="true">expand_more</span>
+    </summary>
     <div class="sec-body">
-      <div class="sec-inner">
-        <div class="comm-grid">
-          <div class="comm-card dropbox-card">
-		  <div class="comm-head"><div class="comm-logo"><img src="./images/dropbox.png" width="32"></div><div class="comm-name">Dropbox</div></div>
-            <div class="comm-links">
-              <a class="comm-link" href="https://meson.in/dropbox" target="_blank" rel="noopener"><span class="material-icons-round">share</span><span class="comm-link-text">Public Sharing</span><span class="comm-arr">↗</span></a>
-              <a class="comm-link" href="https://file.meson.in" target="_blank" rel="noopener"><span class="material-icons-round">upload</span><span class="comm-link-text">Upload your files</span><span class="comm-arr">↗</span></a>
-            </div>
-          </div>
-          <div class="comm-card box-card">
-		  <div class="comm-head"><div class="comm-logo"><img src="./images/box.png" width="32"></div><div class="comm-name">Box</div></div>
-            <div class="comm-links">
-              <a class="comm-link" href="http://box.social.meson.in" target="_blank" rel="noopener"><span class="material-icons-round">folder</span><span class="comm-link-text">Júne's Primary Box</span><span class="comm-arr">↗</span></a>
-              <a class="comm-link" href="http://box.social.onni.me" target="_blank" rel="noopener"><span class="material-icons-round">folder_open</span><span class="comm-link-text">Júne's Secondary Box</span><span class="comm-arr">↗</span></a>
-            </div>
-          </div>
-          <div class="comm-card od-card">
-		  <div class="comm-head"><div class="comm-logo"><img src="./images/onedrive.png" width="32"></div><div class="comm-name">OneDrive</div></div>
-            <div class="comm-links">
-              <a class="comm-link" href="https://meson.in/primus" target="_blank" rel="noopener"><span class="material-icons-round">cloud</span><span class="comm-link-text">Primary OneDrive</span><span class="comm-arr">↗</span></a>
-              <a class="comm-link" href="https://meson.in/secondus" target="_blank" rel="noopener"><span class="material-icons-round">cloud_queue</span><span class="comm-link-text">Secondary OneDrive</span><span class="comm-arr">↗</span></a>
-            </div>
-          </div>
-          <div class="comm-card gd-card">
-		  <div class="comm-head"><div class="comm-logo"><img src="./images/drive.png" width="32"></div><div class="comm-name">Google Drive</div></div>
-            <div class="comm-links">
-              <a class="comm-link" href="https://meson.in/invivo" target="_blank" rel="noopener"><span class="material-icons-round">folder_special</span><span class="comm-link-text">Júne's Primary Drive</span><span class="comm-arr">↗</span></a>
-            </div>
-          </div>
+      <div class="comm">
+        <div class="comm-card">
+          <div class="comm-head"><img src="./images/dropbox.png" alt="" width="32" height="32"><h3>Dropbox</h3></div>
+          <a class="comm-link" href="https://meson.in/dropbox" target="_blank" rel="noopener"><span class="ms" aria-hidden="true">share</span><span>Public sharing</span><span class="ms" aria-hidden="true">north_east</span></a>
+          <a class="comm-link" href="https://file.meson.in" target="_blank" rel="noopener"><span class="ms" aria-hidden="true">upload</span><span>Upload your files</span><span class="ms" aria-hidden="true">north_east</span></a>
+        </div>
+        <div class="comm-card">
+          <div class="comm-head"><img src="./images/box.png" alt="" width="32" height="32"><h3>Box</h3></div>
+          <a class="comm-link" href="http://box.social.meson.in" target="_blank" rel="noopener"><span class="ms" aria-hidden="true">folder</span><span>Júne's primary Box</span><span class="ms" aria-hidden="true">north_east</span></a>
+          <a class="comm-link" href="http://box.social.onni.me" target="_blank" rel="noopener"><span class="ms" aria-hidden="true">folder_open</span><span>Júne's secondary Box</span><span class="ms" aria-hidden="true">north_east</span></a>
+        </div>
+        <div class="comm-card">
+          <div class="comm-head"><img src="./images/onedrive.png" alt="" width="32" height="32"><h3>OneDrive</h3></div>
+          <a class="comm-link" href="https://meson.in/primus" target="_blank" rel="noopener"><span class="ms" aria-hidden="true">cloud</span><span>Primary OneDrive</span><span class="ms" aria-hidden="true">north_east</span></a>
+          <a class="comm-link" href="https://meson.in/secondus" target="_blank" rel="noopener"><span class="ms" aria-hidden="true">cloud_queue</span><span>Secondary OneDrive</span><span class="ms" aria-hidden="true">north_east</span></a>
+        </div>
+        <div class="comm-card">
+          <div class="comm-head"><img src="./images/drive.png" alt="" width="32" height="32"><h3>Google Drive</h3></div>
+          <a class="comm-link" href="https://meson.in/invivo" target="_blank" rel="noopener"><span class="ms" aria-hidden="true">folder_special</span><span>Júne's primary Drive</span><span class="ms" aria-hidden="true">north_east</span></a>
         </div>
       </div>
     </div>
-  </div>
+  </details>
 
-  <!-- SECTION 3 -->
-  <div class="section open" id="sec-transfer">
-    <div class="sec-toggle" onclick="toggleSection('sec-transfer')" role="button" tabindex="0" aria-expanded="true">
-      <div class="sec-icon si-orange"><span class="material-icons-round">swap_horiz</span></div>
-      <div class="sec-title-wrap">
-        <div class="sec-title">Transfer Massive Files</div>
-        <div class="sec-sub">Authentication required · onni.me endpoints</div>
-      </div>
-      <div class="sec-badge">4 endpoints</div>
-      <div class="sec-chevron"><span class="material-icons-round">expand_more</span></div>
-    </div>
+  <details class="sec" id="transfer" open>
+    <summary>
+      <span class="sec-icon"><span class="ms" aria-hidden="true">swap_horiz</span></span>
+      <span class="sec-text"><h2>Transfer large files</h2><p>Sign-in required on all onni.me endpoints</p></span>
+      <span class="badge">4 endpoints</span>
+      <span class="ms chev" aria-hidden="true">expand_more</span>
+    </summary>
     <div class="sec-body">
-      <div class="sec-inner">
-        <div class="auth-notice"><span class="material-icons-round">lock</span>Authentication required to access these endpoints</div>
-        <div class="transfer-grid">
-          <a class="transfer-btn tb-a" href="https://bit.onni.me" target="_blank" rel="noopener"><span class="material-icons-round">schedule</span><span class="tb-name">Periodic / Single Sharing</span><span class="tb-host">bit.onni.me</span><span class="tb-arr"><span class="material-icons-round" style="font-size:16px">north_east</span></span></a>
-          <a class="transfer-btn tb-b" href="https://tor.onni.me" target="_blank" rel="noopener"><span class="material-icons-round">folder_zip</span><span class="tb-name">Collective / Bulk Sharing</span><span class="tb-host">tor.onni.me</span><span class="tb-arr"><span class="material-icons-round" style="font-size:16px">north_east</span></span></a>
-          <a class="transfer-btn tb-c" href="https://gen.onni.me" target="_blank" rel="noopener"><span class="material-icons-round">person</span><span class="tb-name">Personal Purpose Sharing</span><span class="tb-host">gen.onni.me</span><span class="tb-arr"><span class="material-icons-round" style="font-size:16px">north_east</span></span></a>
-          <a class="transfer-btn tb-e" href="https://mov.onni.me" target="_blank" rel="noopener"><span class="material-icons-round">move_to_inbox</span><span class="tb-name">Backend Bulk Sharing</span><span class="tb-host">mov.onni.me</span><span class="tb-arr"><span class="material-icons-round" style="font-size:16px">north_east</span></span></a>
-        </div>
+      <div class="notice"><span class="ms" aria-hidden="true">lock</span>You need to sign in to use these endpoints</div>
+      <div class="tiles">
+        <a class="tile" style="--accent:#3f6b6e" href="https://bit.onni.me" target="_blank" rel="noopener"><span class="ms" aria-hidden="true">schedule</span><div><h3>Periodic and single sharing</h3><div class="host">bit.onni.me</div></div></a>
+        <a class="tile" style="--accent:#7a6aa6" href="https://tor.onni.me" target="_blank" rel="noopener"><span class="ms" aria-hidden="true">folder_zip</span><div><h3>Collective and bulk sharing</h3><div class="host">tor.onni.me</div></div></a>
+        <a class="tile" style="--accent:#6b8f5e" href="https://gen.onni.me" target="_blank" rel="noopener"><span class="ms" aria-hidden="true">person</span><div><h3>Personal sharing</h3><div class="host">gen.onni.me</div></div></a>
+        <a class="tile" style="--accent:#b8923a" href="https://mov.onni.me" target="_blank" rel="noopener"><span class="ms" aria-hidden="true">move_to_inbox</span><div><h3>Backend bulk sharing</h3><div class="host">mov.onni.me</div></div></a>
       </div>
     </div>
-  </div>
+  </details>
 
-  <footer class="portal-footer">
-    <div class="pf-brand">
-      <div class="pf-logo"><span class="material-icons-round">hub</span></div>
-      <div>
-        <div class="pf-name">Meson Systematics</div>
-        <div class="pf-tagline">Powered by Thomas J. Park</div>
-      </div>
+  <footer>
+    <div>
+      <div class="foot-name">Meson Systematics</div>
+      <div class="foot-sub">Powered by Thomas J. Park</div>
     </div>
-    <div class="pf-links">
-      <a class="pf-link" href="https://meson.one" target="_blank"><span class="material-icons-round">language</span>meson.one</a>
-      <div class="pf-divider"></div>
-      <a class="pf-link" href="mailto:june@meson.one"><span class="material-icons-round">mail</span>june@meson.one</a>
+    <div class="foot-links">
+      <a href="https://meson.one" target="_blank" rel="noopener"><span class="ms" aria-hidden="true">language</span>meson.one</a>
+      <a href="mailto:june@meson.one"><span class="ms" aria-hidden="true">mail</span>june@meson.one</a>
     </div>
   </footer>
-
-</div>
+</main>
 
 <script>
 /* Clocks */
 const zones=[
-  {t:'tz-local',d:'tz-local-d',tz:null},
-  {t:'tz-utc',  d:'tz-utc-d',  tz:'UTC'},
-  {t:'tz-sgt',  d:'tz-sgt-d',  tz:'Asia/Singapore'},
-  {t:'tz-bos',  d:'tz-bos-d',  tz:'America/New_York'},
-];
-function fmtTime(date,tz){return date.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit',second:'2-digit',timeZone:tz||undefined});}
-function fmtDate(date,tz){return date.toLocaleDateString('en-GB',{weekday:'short',month:'short',day:'numeric',timeZone:tz||undefined});}
-function tickClocks(){const now=new Date();zones.forEach(z=>{document.getElementById(z.t).textContent=fmtTime(now,z.tz);document.getElementById(z.d).textContent=fmtDate(now,z.tz);});}
-tickClocks();setInterval(tickClocks,1000);
+  {t:'tz-local',d:'tz-local-d',tz:undefined},
+  {t:'tz-utc',d:'tz-utc-d',tz:'UTC'},
+  {t:'tz-sgt',d:'tz-sgt-d',tz:'Asia/Singapore'},
+  {t:'tz-bos',d:'tz-bos-d',tz:'America/New_York'}
+].map(z=>({
+  ...z,
+  el:document.getElementById(z.t),del:document.getElementById(z.d),
+  tf:new Intl.DateTimeFormat('en-GB',{hour:'2-digit',minute:'2-digit',second:'2-digit',timeZone:z.tz}),
+  df:new Intl.DateTimeFormat('en-GB',{weekday:'short',day:'numeric',month:'short',timeZone:z.tz})
+}));
+function tick(){const n=new Date();zones.forEach(z=>{z.el.textContent=z.tf.format(n);z.del.textContent=z.df.format(n)})}
+tick();setInterval(tick,1000);
 
-/* Section toggle */
-function toggleSection(id){
-  const el=document.getElementById(id);
-  const isOpen=el.classList.toggle('open');
-  el.querySelector('.sec-toggle').setAttribute('aria-expanded',isOpen);
-}
-document.querySelectorAll('.sec-toggle').forEach(el=>{
-  el.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();el.click()}});
-});
-
-/* Cloud instance data */
+/* Nextcloud instances */
 const tiers={
   t1:[
-    {url:'https://hms.meson.in',   name:'Claudia de J\u00FAne',        accent:'#B80B0B', fv:'a7e9b885', desc:'research platform for J\u00FAne Park, MD, PhD.'},
-    {url:'https://mgh.meson.in',   name:'Tom\u2019s CABiNET',           accent:'#008BB0', fv:'ca7c0552', desc:'clinical platform and health data for Tom\u2019s Works'},
-    {url:'https://nus.meson.in',   name:'FiNCA de J\u00FAne',           accent:'#EF7C00', fv:'afd34149', desc:'secured research data from Biopolis, SG'},
-    {url:'https://broad.meson.in', name:'Systems Biology Datum',        accent:'#015F9D', fv:'ad628b33', desc:'in silico platform for genetic & NGS for June Park'},
-    {url:'https://cloud.onni.me',  name:'J\u00FAne\u2019s Caspa',       accent:'#003876', fv:'8d8d50a0', desc:'Institutional gateway and cloud box by Wonjun Park'},
+    {url:'https://hms.meson.in',name:'Claudia de J\u00FAne',accent:'#B80B0B',fv:'a7e9b885',desc:'research platform for J\u00FAne Park, MD, PhD.'},
+    {url:'https://mgh.meson.in',name:'Tom\u2019s CABiNET',accent:'#008BB0',fv:'ca7c0552',desc:'clinical platform and health data for Tom\u2019s Works'},
+    {url:'https://nus.meson.in',name:'FiNCA de J\u00FAne',accent:'#EF7C00',fv:'afd34149',desc:'secured research data from Biopolis, SG'},
+    {url:'https://broad.meson.in',name:'Systems Biology Datum',accent:'#015F9D',fv:'ad628b33',desc:'in silico platform for genetic & NGS for June Park'},
+    {url:'https://cloud.onni.me',name:'J\u00FAne\u2019s Caspa',accent:'#003876',fv:'8d8d50a0',desc:'Institutional gateway and cloud box by Wonjun Park'}
   ],
   t2:[
-    {url:'https://box.meson.in',   name:'J\u00FAne\u2019s Boxification',accent:'#009CA6', fv:'69876059', desc:'Data reservoir for J\u00FAne Park'},
-    {url:'https://dna.meson.in',   name:'mi helix su helix',            accent:'#6E6F71', fv:'7f1116fd', desc:'DNA sequencing collection for clinical'},
-    {url:'https://air.meson.in',   name:'Airing June',                  accent:'#99C8A8', fv:'5e6c9b7e', desc:'Airing data mi casa'},
-    {url:'https://chau.onni.me',   name:'Chaumet de JJ',                accent:'#ddcb55', fv:'a8307d25', desc:'Junnie and Jennie - Cloud place for duo'},
-    {url:'https://halo.meson.in',  name:'Halo Epigenetics',             accent:'#5B64B3', fv:'5b9cc373', desc:'Data Collection for epigenetics'},
+    {url:'https://box.meson.in',name:'J\u00FAne\u2019s Boxification',accent:'#009CA6',fv:'69876059',desc:'Data reservoir for J\u00FAne Park'},
+    {url:'https://dna.meson.in',name:'mi helix su helix',accent:'#6E6F71',fv:'7f1116fd',desc:'DNA sequencing collection for clinical'},
+    {url:'https://air.meson.in',name:'Airing June',accent:'#6FA583',fv:'5e6c9b7e',desc:'Airing data mi casa'},
+    {url:'https://chau.onni.me',name:'Chaumet de JJ',accent:'#C2AE2E',fv:'a8307d25',desc:'Junnie and Jennie - Cloud place for duo'},
+    {url:'https://halo.meson.in',name:'Halo Epigenetics',accent:'#5B64B3',fv:'5b9cc373',desc:'Data Collection for epigenetics'}
   ],
   t3:[
-    {url:'https://sync.meson.in',  name:'Sync Tank',                    accent:'#794E44', fv:'5e6c9b7e', desc:'Synchronization Tank de J\u00FAne Park'},
-    {url:'https://ej.onni.me',     name:'EJ Cloud',                     accent:'#8855a8', fv:'0ec0c64e', desc:'Cloud Platform by EJ Estate'},
-    {url:'https://komeda.onni.me', name:'komeda',                       accent:'#B3B3B3', fv:'c2282dfe', desc:'La cloud de Komeda'},
-	{url:'https://oay.onni.me',	   name:'Ayoung Tierra',				accent:'#BF678B', fv:'8beb86ae', desc:'Personal Cloud for Ayoung Oh'},
-  ],
+    {url:'https://sync.meson.in',name:'Sync Tank',accent:'#794E44',fv:'5e6c9b7e',desc:'Synchronization Tank de J\u00FAne Park'},
+    {url:'https://ej.onni.me',name:'EJ Cloud',accent:'#8855a8',fv:'0ec0c64e',desc:'Cloud Platform by EJ Estate'},
+    {url:'https://komeda.onni.me',name:'komeda',accent:'#8c8c8c',fv:'c2282dfe',desc:'La cloud de Komeda'},
+    {url:'https://oay.onni.me',name:'Ayoung Tierra',accent:'#BF678B',fv:'8beb86ae',desc:'Personal Cloud for Ayoung Oh'}
+  ]
 };
 
+function el(tag,cls,text){const e=document.createElement(tag);if(cls)e.className=cls;if(text!==undefined)e.textContent=text;return e}
+function icon(name,cls){const s=el('span','ms'+(cls?' '+cls:''),name);s.setAttribute('aria-hidden','true');return s}
+
 function buildCard(item){
-  const card=document.createElement('a');
-  card.className='cloud-card';
-  card.href=item.url;
-  card.target='_blank';
-  card.rel='noopener';
-  card.style.setProperty('--accent',item.accent);
+  const a=el('a','card');
+  a.href=item.url;a.target='_blank';a.rel='noopener';
+  a.style.setProperty('--accent',item.accent);
 
-  const host=new URL(item.url).host;
-  const faviconSrc=`${item.url}/apps/theming/favicon?v=${item.fv}`;
+  const top=el('div','card-top');
+  const fav=el('div','fav loading');
+  top.append(fav,icon('north_east','go'));
 
-  card.innerHTML=`
-    <div class="cc-head">
-      <div class="cc-icon loading" id="icon-${item.fv}-${host.replace(/\./g,'')}"></div>
-      <div class="cc-arrow"><span class="material-icons-round">north_east</span></div>
-    </div>
-    <div class="cc-body">
-      <div class="cc-name">${item.name}</div>
-      <div class="cc-host">${host}</div>
-      <div class="cc-desc">${item.desc}</div>
-    </div>`;
+  const body=el('div');
+  body.append(el('h3','',item.name),el('div','host',new URL(item.url).host));
+  a.append(top,body,el('p','desc',item.desc));
 
-  /* Load favicon from Nextcloud theming endpoint */
-  const iconEl=card.querySelector('.cc-icon');
+  /* Favicon from the Nextcloud theming endpoint, with a quiet fallback */
+  const src=`${item.url}/apps/theming/favicon?v=${item.fv}`;
   const img=new Image();
-  img.onload=()=>{
-    iconEl.classList.remove('loading');
-    iconEl.innerHTML=`<img src="${faviconSrc}" alt="${item.name}" width="30" height="30">`;
-  };
-  img.onerror=()=>{
-    iconEl.classList.remove('loading');
-    iconEl.innerHTML=`<span class="material-icons-round">cloud</span>`;
-  };
-  img.src=faviconSrc;
-
-  return card;
+  img.alt='';img.width=28;img.height=28;
+  img.onload=()=>{fav.classList.remove('loading');fav.replaceChildren(img)};
+  img.onerror=()=>{fav.classList.remove('loading');fav.replaceChildren(icon('cloud'))};
+  img.src=src;
+  return a;
 }
 
-function renderTiers(){
-  Object.entries(tiers).forEach(([key,items])=>{
-    const grid=document.getElementById('grid-'+key);
-    items.forEach(item=>grid.appendChild(buildCard(item)));
-  });
-}
-
-renderTiers();
+let total=0;
+Object.entries(tiers).forEach(([k,items])=>{
+  const g=document.getElementById('grid-'+k);
+  items.forEach(i=>g.appendChild(buildCard(i)));
+  total+=items.length;
+});
+document.getElementById('count').textContent=total+' instances';
 </script>
 </body>
 </html>
